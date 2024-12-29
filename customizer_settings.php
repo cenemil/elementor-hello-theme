@@ -51,6 +51,11 @@ function hello_theme_child_customize_register( $wp_customize ) {
 	    'panel' => 'htc_general_panel'
 	) );
 
+	$wp_customize->add_section( 'htc_gen_page_layout_section', array(
+	    'title' => __( 'Page Layout', $text_domain ),
+	    'panel' => 'htc_general_panel'
+	) );
+
 	$wp_customize->add_section( 'htc_gen_gform_section', array(
 	    'title' => __( 'Gravity Form', $text_domain ),
 	    'panel' => 'htc_general_panel'
@@ -244,6 +249,10 @@ function hello_theme_child_customize_register( $wp_customize ) {
 	    'default' => '20px'
 	) );
 
+	$wp_customize->add_setting( 'htc_gen_setting_phead_align', array(
+	    'default' => 'center'
+	) );
+
 	$wp_customize->add_setting( 'htc_gen_setting_phead_color', array(
 	    'default' => '#FFFFFF'
 	) );
@@ -280,8 +289,8 @@ function hello_theme_child_customize_register( $wp_customize ) {
 	    'default' => '#000000'
 	) );
 
-	$wp_customize->add_setting( 'htc_gen_setting_phead_align', array(
-	    'default' => 'center'
+	$wp_customize->add_setting( 'htc_gen_setting_playout_enable', array(
+	    'default' => 'yes'
 	) );
 
 	$wp_customize->add_setting( 'htc_gen_setting_gform_bg', array(
@@ -952,6 +961,20 @@ function hello_theme_child_customize_register( $wp_customize ) {
 			'settings' => 'htc_gen_setting_phead_fontcolor',
 		)
 	) );
+
+	$wp_customize->add_control( 'htc_gen_control_playout_enable',
+		array(
+			'type' => 'radio',
+			'label' => __( 'Enable page layout override?', $text_domain ),
+			'description' => __( 'Default layout is Full Width', $text_domain ),
+			'section' => 'htc_gen_page_layout_section',
+			'settings' => 'htc_gen_setting_playout_enable',
+			'choices' => array(
+				'yes' => 'Yes',
+				'no' => 'No'
+			)
+		)
+	);
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'htc_gen_control_gform_bg',
 		array(
