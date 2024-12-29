@@ -42,3 +42,8 @@ add_action( 'admin_footer', function() {
     echo '<style>.notice.e-notice{display: none !important;}</style>';
   }
 });
+
+// Remove Elementor form widget email promotion notice
+add_action( 'elementor/element/form/section_email/after_section_end', function( $element, $args ) {
+  $element->remove_control( 'site_mailer_promo' );
+}, 10, 2 );
